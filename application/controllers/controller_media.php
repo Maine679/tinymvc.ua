@@ -28,7 +28,7 @@ $config = [
 
 $db = new \Buki\Pdox($config);
 
-$order = (int)$order;
+$order = (int)$vars['order'];
 if($order < 0)
     $order = 0;
 
@@ -40,21 +40,29 @@ $db->table('client')
     ->orderBy('id')
     ->getAll();
 
+
+
 $res = $db->fetch(\PDO::FETCH_ASSOC);
 
+$tmpName = $_FILES['image']['tmp_name'];
 
-$image = $_FILES['image']['tmp_name'];
+if(!empty($tmpName)) {
+    $error = $_FILES['image']['error'];
 
-//var_dump($_FILES); die();
+    $fi = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = (string) finfo_file($fi, $tmpName);
 
-if(!empty($image)) {
-//    var_dump($_FILES); die();
+    $image = getimagesize($tmpName);
+    $format = image_type_to_extension($image[2]);
 
-    $img = new Intervention\Image\Image();
+    $newFileName = 'img_' . md5(microtime()) . $format;
 
-//    composer require spatie/laravel-medialibrary
-    $img_1 = $img->make($image);
-    var_dump($img_1);
+    move_uploaded_file($tmpName, __DIR__ . '\..\..\img\demo\avatars\\' . $newFileName);
+
+    $db->table('client')
+        ->where('id',$res->id)
+        ->update(['img'=>'../../img/demo/avatars/' . $newFileName]);
+
 }
 
 
@@ -64,4 +72,4 @@ if(!empty($image)) {
 $templates = new League\Plates\Engine('../application/view');
 
 // Render a template
-echo $templates->render('media_view', ['order'=>(int)$vars['order']]);
+echo $templates->render('media_view', ['res'=>$res]);

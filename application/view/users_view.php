@@ -106,7 +106,7 @@ $this->layout('template', ['title' => 'Пользователи','auth'=>$auth])
                                         }
                                     ?>
                                     <span class="status status-<?echo $status;?> mr-3">
-                                        <span class="rounded-circle profile-image d-block " style="background-image:url('../../img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                        <span class="rounded-circle profile-image d-block " style="background-image:url('<?=$item->img; ?>'); background-size: 550px;"></span>
                                     </span>
                             <div class="info-card-text flex-1">
                                 <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
@@ -127,6 +127,9 @@ $this->layout('template', ['title' => 'Пользователи','auth'=>$auth])
                                         <a class="dropdown-item" href="/edit/<?=$order;?>">
                                             <i class="fa fa-edit"></i>
                                             Изменить</a>
+                                        <a class="dropdown-item" href="/media/<?=$order;?>">
+                                            <i class="fa fa-edit"></i>
+                                            Изменить аватар</a>
                                 <? if($auth->getRoles() ==  \Delight\Auth\Role::ADMIN ): ?>
                                         <a class="dropdown-item" href="/edit">
                                             <i class="fa fa-edit"></i>

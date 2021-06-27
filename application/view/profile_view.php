@@ -65,7 +65,7 @@ $this->layout('template', ['title' => 'Профиль','auth'=>$auth]) ?>
                             }
                             ?>
                             <span class="status status-<?echo $status;?> mr-3">
-                            <img src="../../img/demo/avatars/avatar-admin-lg.png" class="rounded-circle shadow-2 img-thumbnail" alt="">
+                            <img src="<?=$res->img; ?>" size="500px" class="rounded-circle shadow-2 img-thumbnail" alt="">
                             </span>
 
                             <h5 class="mb-0 fw-700 text-center mt-3">
