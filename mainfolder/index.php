@@ -59,6 +59,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     $r->addRoute(['POST','GET'], '/edit/{order:\d+}', 'controller_edit');
 
+    $r->addRoute(['POST','GET'], '/security/{order:\d+}', 'controller_security');
+
 //    {id} must be a number (\d+)
 //    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
 //    $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');

@@ -130,6 +130,9 @@ $this->layout('template', ['title' => 'Пользователи','auth'=>$auth])
                                         <a class="dropdown-item" href="/media/<?=$order;?>">
                                             <i class="fa fa-edit"></i>
                                             Изменить аватар</a>
+                                        <a class="dropdown-item" href="/security/<?=$order;?>">
+                                            <i class="fa fa-edit"></i>
+                                            Безопастроность</a>
                                 <? if($auth->getRoles() ==  \Delight\Auth\Role::ADMIN ): ?>
                                         <a class="dropdown-item" href="/edit">
                                             <i class="fa fa-edit"></i>
